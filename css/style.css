@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: "VT323";
+  font-family: "VT323", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,4 +42,7 @@ body #container {
   font-size: 5em;
   color: purple;
   margin-top: 0;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
 }
