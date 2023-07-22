@@ -4,6 +4,12 @@ html {
   margin: 0;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body #container {
   display: flex;
   height: 80vh;
