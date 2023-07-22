@@ -9,13 +9,13 @@ function createContainer() {
 function createGrid() {
   const container = createContainer();
   for (let i = 0; i < 16; i++) {
-    const row = document.createElement("div");
-    row.classList.add("row");
-    container.appendChild(row);
+    const column = document.createElement("div");
+    column.classList.add("column");
+    container.appendChild(column);
     for (let i = 0; i < 16; i++) {
-      const column = document.createElement("div");
-      column.classList.add("column");
-      row.appendChild(column);
+      const square = document.createElement("div");
+      square.classList.add("square");
+      column.appendChild(square);
     }
   }
 }

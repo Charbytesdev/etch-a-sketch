@@ -30,14 +30,14 @@ body #container {
   border: 1px solid var(--clr-neon-purple);
 }
 
-.row {
+.column {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
 }
 
-.column {
+.square {
   flex: 1;
   border: 1px solid var(--clr-neon-purple);
 }
