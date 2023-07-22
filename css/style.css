@@ -1,3 +1,7 @@
+:root {
+  --clr-neon-purple: #9d00ff;
+}
+
 @font-face {
   font-family: "VT323";
   font-weight: 400;
@@ -23,7 +27,7 @@ body #container {
   display: flex;
   height: 80vh;
   width: 80vh;
-  border: 1px solid blue;
+  border: 1px solid var(--clr-neon-purple);
 }
 
 .row {
@@ -35,12 +39,12 @@ body #container {
 
 .column {
   flex: 1;
-  border: 1px solid blue;
+  border: 1px solid var(--clr-neon-purple);
 }
 
 #title {
   font-size: 5em;
-  color: purple;
+  color: var(--clr-neon-purple);
   margin-top: 0;
   text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
