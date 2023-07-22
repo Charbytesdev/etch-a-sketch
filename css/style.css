@@ -40,6 +40,9 @@ body #container {
 .square {
   cursor: pointer;
   flex: 1;
+}
+
+.grid {
   border: 1px solid var(--clr-neon-purple);
 }
 

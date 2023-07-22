@@ -27,6 +27,14 @@ function changeBackgroundColor(e) {
 }
 
 const squares = document.querySelectorAll(".square");
+
 squares.forEach((square) =>
   square.addEventListener("mouseover", changeBackgroundColor)
 );
+
+function showGrid() {
+  squares.forEach((square) => square.classList.toggle("grid"));
+}
+
+const gridButton = document.querySelector("#grid-button");
+gridButton.addEventListener("click", showGrid);
