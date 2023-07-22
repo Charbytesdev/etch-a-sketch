@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "VT323";
+  font-weight: 400;
+  src: url("../assets/fonts/vt323-regular-webfont.woff2") format("woff2"),
+    url(../assets/fonts/vt323-regular-webfont.woff) format("woff");
+}
+
 body,
 html {
   height: 100%;
@@ -5,6 +12,7 @@ html {
 }
 
 body {
+  font-family: "VT323";
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +39,6 @@ body #container {
 }
 
 #title {
-  font-family: "Bebas Neue", sans-serif;
   font-size: 5em;
   color: purple;
   margin-top: 0;
