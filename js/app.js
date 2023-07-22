@@ -21,3 +21,12 @@ function createGrid() {
 }
 
 createGrid();
+
+function changeBackgroundColor(e) {
+  e.target.style.backgroundColor = "purple";
+}
+
+const squares = document.querySelectorAll(".square");
+squares.forEach((square) =>
+  square.addEventListener("mouseover", changeBackgroundColor)
+);
