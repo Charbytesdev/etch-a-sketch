@@ -1,54 +1,55 @@
-let isGridLinesOn = false;
+(function () {
+  createGrid(16);
+  var isGridLinesOn = false;
 
-function createContainer() {
-  const body = document.querySelector("body");
-  const container = document.createElement("div");
-  container.id = "container";
-  body.appendChild(container);
-  return container;
-}
+  const inputSize = document.querySelector("#size-range");
+  inputSize.addEventListener("change", () => changeGridSize(inputSize.value));
 
-function createGrid(size = 16) {
-  const container = createContainer();
-  for (let i = 0; i < size; i++) {
-    const column = document.createElement("div");
-    column.classList.add("column");
-    container.appendChild(column);
+  const gridButton = document.querySelector("#grid-button");
+  gridButton.addEventListener("click", toggleGridLines);
+
+  function createContainer() {
+    const body = document.querySelector("body");
+    const container = document.createElement("div");
+    container.id = "container";
+    body.appendChild(container);
+    return container;
+  }
+
+  function createGrid(size = 16) {
+    const container = createContainer();
     for (let i = 0; i < size; i++) {
-      const square = document.createElement("div");
-      square.classList.add("square");
-      column.appendChild(square);
-      startDrawing(square);
-      if (isGridLinesOn) square.classList.add("grid");
+      const column = document.createElement("div");
+      column.classList.add("column");
+      container.appendChild(column);
+      for (let j = 0; j < size; j++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
+        column.appendChild(square);
+        startDrawing(square);
+        if (isGridLinesOn) square.classList.add("grid");
+      }
     }
   }
-}
 
-function changeRange(inputSize) {
-  console.log(inputSize);
-  const body = document.querySelector("body");
-  body.removeChild(body.lastChild);
-  createGrid(inputSize);
-}
+  function changeGridSize(inputSize) {
+    console.log(inputSize);
+    const body = document.querySelector("body");
+    body.removeChild(body.lastChild);
+    createGrid(inputSize);
+  }
 
-createGrid(15);
-const inputSize = document.querySelector("#size-range");
+  function changeBackgroundColor(e) {
+    e.target.style.backgroundColor = "purple";
+  }
 
-inputSize.addEventListener("change", () => changeRange(inputSize.value));
+  function startDrawing(square) {
+    square.addEventListener("mouseover", changeBackgroundColor);
+  }
 
-function changeBackgroundColor(e) {
-  e.target.style.backgroundColor = "purple";
-}
-
-function startDrawing(square) {
-  square.addEventListener("mouseover", changeBackgroundColor);
-}
-
-function showGrid() {
-  isGridLinesOn = !isGridLinesOn;
-  const squares = document.querySelectorAll(".square");
-  squares.forEach((square) => square.classList.toggle("grid"));
-}
-
-const gridButton = document.querySelector("#grid-button");
-gridButton.addEventListener("click", showGrid);
+  function toggleGridLines() {
+    isGridLinesOn = !isGridLinesOn;
+    const squares = document.querySelectorAll(".square");
+    squares.forEach((square) => square.classList.toggle("grid"));
+  }
+})();
