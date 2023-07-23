@@ -1,6 +1,15 @@
 (function () {
   createGrid(16);
-  var isGridLinesOn = false;
+
+  let isGridLinesOn = false;
+
+  function getIsGridLinesOn() {
+    return isGridLinesOn;
+  }
+
+  function setIsGridLinesOn(newValue) {
+    isGridLinesOn = newValue;
+  }
 
   const inputSize = document.querySelector("#size-range");
   inputSize.addEventListener("change", () => changeGridSize(inputSize.value));
@@ -27,7 +36,7 @@
         square.classList.add("square");
         column.appendChild(square);
         startDrawing(square);
-        if (isGridLinesOn) square.classList.add("grid");
+        if (getIsGridLinesOn) square.classList.add("grid");
       }
     }
   }
@@ -48,7 +57,7 @@
   }
 
   function toggleGridLines() {
-    isGridLinesOn = !isGridLinesOn;
+    setIsGridLinesOn(!isGridLinesOn);
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => square.classList.toggle("grid"));
   }
