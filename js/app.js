@@ -16,7 +16,7 @@ function createGrid(size = 16) {
       const square = document.createElement("div");
       square.classList.add("square");
       column.appendChild(square);
-      startDrawing();
+      startDrawing(square);
     }
   }
 }
@@ -37,14 +37,12 @@ function changeBackgroundColor(e) {
   e.target.style.backgroundColor = "purple";
 }
 
-function startDrawing() {
-  const squares = document.querySelectorAll(".square");
-  squares.forEach((square) =>
-    square.addEventListener("mouseover", changeBackgroundColor)
-  );
+function startDrawing(square) {
+  square.addEventListener("mouseover", changeBackgroundColor);
 }
 
 function showGrid() {
+  const squares = document.querySelectorAll(".square");
   squares.forEach((square) => square.classList.toggle("grid"));
 }
 
