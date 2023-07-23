@@ -1,3 +1,5 @@
+let isGridLinesOn = false;
+
 function createContainer() {
   const body = document.querySelector("body");
   const container = document.createElement("div");
@@ -17,6 +19,7 @@ function createGrid(size = 16) {
       square.classList.add("square");
       column.appendChild(square);
       startDrawing(square);
+      if (isGridLinesOn) square.classList.add("grid");
     }
   }
 }
@@ -42,6 +45,7 @@ function startDrawing(square) {
 }
 
 function showGrid() {
+  isGridLinesOn = !isGridLinesOn;
   const squares = document.querySelectorAll(".square");
   squares.forEach((square) => square.classList.toggle("grid"));
 }
