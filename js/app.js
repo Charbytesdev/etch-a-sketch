@@ -6,31 +6,43 @@ function createContainer() {
   return container;
 }
 
-function createGrid() {
+function createGrid(size = 16) {
   const container = createContainer();
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < size; i++) {
     const column = document.createElement("div");
     column.classList.add("column");
     container.appendChild(column);
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < size; i++) {
       const square = document.createElement("div");
       square.classList.add("square");
       column.appendChild(square);
+      startDrawing();
     }
   }
 }
 
-createGrid();
+function changeRange(inputSize) {
+  console.log(inputSize);
+  const body = document.querySelector("body");
+  body.removeChild(body.lastChild);
+  createGrid(inputSize);
+}
+
+createGrid(15);
+const inputSize = document.querySelector("#size-range");
+
+inputSize.addEventListener("change", () => changeRange(inputSize.value));
 
 function changeBackgroundColor(e) {
   e.target.style.backgroundColor = "purple";
 }
 
-const squares = document.querySelectorAll(".square");
-
-squares.forEach((square) =>
-  square.addEventListener("mouseover", changeBackgroundColor)
-);
+function startDrawing() {
+  const squares = document.querySelectorAll(".square");
+  squares.forEach((square) =>
+    square.addEventListener("mouseover", changeBackgroundColor)
+  );
+}
 
 function showGrid() {
   squares.forEach((square) => square.classList.toggle("grid"));
