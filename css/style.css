@@ -13,9 +13,14 @@ body,
 html {
   height: 100%;
   margin: 0;
+  padding: 0;
 }
 
 body {
+  background: url(../img/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "VT323", sans-serif;
   display: flex;
   flex-direction: column;
