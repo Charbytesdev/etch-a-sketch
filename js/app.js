@@ -1,6 +1,7 @@
 (function () {
   let isGridLinesOn = false;
   let mouseDown = false;
+  let isColorModeOn = true;
   let isRainbowModeOn = false;
   let isEraserModeOn = false;
   let currentColor = "#9D00FF";
@@ -47,11 +48,14 @@
   const clearButton = document.querySelector("#clear-button");
   clearButton.addEventListener("click", clearGrid);
 
+  const colorButton = document.querySelector("#color-button");
+  colorButton.addEventListener("click", enableColorMode);
+
   const rainbowButton = document.querySelector("#rainbow-button");
-  rainbowButton.addEventListener("click", toggleRainbowMode);
+  rainbowButton.addEventListener("click", enableRainbowMode);
 
   const eraserButton = document.querySelector("#eraser-button");
-  eraserButton.addEventListener("click", toggleEraserMode);
+  eraserButton.addEventListener("click", enableEraserMode);
 
   function createContainer(body) {
     const container = document.createElement("div");
@@ -89,12 +93,11 @@
   }
 
   function changeBackgroundColor(e) {
-    let color = getCurrentColor();
-    if (isRainbowModeOn) {
-      color = getRandomColor();
-    } else if (isEraserModeOn) {
-      color = "transparent";
-    }
+    let color = "";
+
+    if (isColorModeOn) color = getCurrentColor();
+    if (isRainbowModeOn) color = getRandomColor();
+    else if (isEraserModeOn) color = "transparent";
 
     e.target.style.backgroundColor = color;
   }
@@ -116,13 +119,21 @@
     squares.forEach((square) => square.classList.toggle("grid"));
   }
 
-  function toggleRainbowMode() {
-    isRainbowModeOn = !isRainbowModeOn;
+  function enableColorMode() {
+    isColorModeOn = true;
+    isRainbowModeOn = false;
     isEraserModeOn = false;
   }
 
-  function toggleEraserMode() {
-    isEraserModeOn = !isEraserModeOn;
+  function enableRainbowMode() {
+    isRainbowModeOn = true;
+    isColorModeOn = false;
+    isEraserModeOn = false;
+  }
+
+  function enableEraserMode() {
+    isEraserModeOn = true;
+    isColorModeOn = false;
     isRainbowModeOn = false;
   }
 
