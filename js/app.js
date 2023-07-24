@@ -1,5 +1,12 @@
 (function () {
   let isGridLinesOn = false;
+  let mouseDown = false;
+
+  //Disable dragging to prevent drawing issues
+  document.ondragstart = () => {
+    return false;
+  };
+  function disableDragging() {}
 
   const body = document.querySelector("body");
   const container = createContainer(body);
@@ -40,6 +47,7 @@
       for (let j = 0; j < size; j++) {
         const square = document.createElement("div");
         square.classList.add("square");
+
         column.appendChild(square);
         startDrawing(square);
         if (getIsGridLinesOn()) square.classList.add("grid");
@@ -56,7 +64,14 @@
   }
 
   function startDrawing(square) {
-    square.addEventListener("mouseover", changeBackgroundColor);
+    square.addEventListener("mousedown", (e) => {
+      mouseDown = true;
+      changeBackgroundColor(e);
+    });
+    square.addEventListener("mousemove", (e) => {
+      if (mouseDown) changeBackgroundColor(e);
+    });
+    square.addEventListener("mouseup", () => (mouseDown = false));
   }
 
   function toggleGridLines() {
