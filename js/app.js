@@ -21,6 +21,9 @@
   const gridButton = document.querySelector("#grid-button");
   gridButton.addEventListener("click", toggleGridLines);
 
+  const clearButton = document.querySelector("#clear-button");
+  clearButton.addEventListener("click", clearGrid);
+
   function createContainer(body) {
     const container = document.createElement("div");
     container.id = "container";
@@ -45,7 +48,6 @@
   }
 
   function changeGridSize(container, inputSize) {
-    console.log(inputSize);
     createGrid(container, inputSize);
   }
 
@@ -61,5 +63,9 @@
     setIsGridLinesOn(!isGridLinesOn);
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => square.classList.toggle("grid"));
+  }
+
+  function clearGrid() {
+    createGrid(container, inputSize.value);
   }
 })();
