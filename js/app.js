@@ -1,7 +1,9 @@
 (function () {
   let isGridLinesOn = false;
   let mouseDown = false;
+  let isRainbowModeOn = false;
   let currentColor = "#9D00FF";
+
   document.addEventListener("mouseup", () => (mouseDown = false));
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
@@ -44,6 +46,9 @@
   const clearButton = document.querySelector("#clear-button");
   clearButton.addEventListener("click", clearGrid);
 
+  const rainbowButton = document.querySelector("#rainbow-button");
+  rainbowButton.addEventListener("click", toggleRainbowMode);
+
   function createContainer(body) {
     const container = document.createElement("div");
     container.id = "container";
@@ -72,12 +77,19 @@
     createGrid(container, inputSize);
   }
 
-  function changeColor(color) {
-    setCurrentColor(color);
+  function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r},${g},${b})`;
   }
 
   function changeBackgroundColor(e) {
-    e.target.style.backgroundColor = getCurrentColor();
+    let color = getCurrentColor();
+    if (isRainbowModeOn) {
+      color = getRandomColor();
+    }
+    e.target.style.backgroundColor = color;
   }
 
   function startDrawing(square) {
@@ -85,6 +97,7 @@
       mouseDown = true;
       changeBackgroundColor(e);
     });
+
     square.addEventListener("mousemove", (e) => {
       if (mouseDown) changeBackgroundColor(e);
     });
@@ -94,6 +107,10 @@
     setIsGridLinesOn(!isGridLinesOn);
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => square.classList.toggle("grid"));
+  }
+
+  function toggleRainbowMode() {
+    isRainbowModeOn = !isRainbowModeOn;
   }
 
   function clearGrid() {
