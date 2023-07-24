@@ -32,7 +32,7 @@ body #container {
   display: flex;
   height: 80vh;
   width: 80vh;
-  border: 1px solid var(--clr-neon-purple);
+  border: 0.3em solid var(--clr-neon-purple);
 }
 
 .column {
@@ -48,7 +48,7 @@ body #container {
 }
 
 .grid {
-  border: 1px solid var(--clr-neon-purple);
+  border: 0.15em solid var(--clr-neon-purple);
 }
 
 #title {
