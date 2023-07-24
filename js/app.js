@@ -1,7 +1,9 @@
 (function () {
-  createGrid(16);
-
   let isGridLinesOn = false;
+
+  const body = document.querySelector("body");
+  const container = createContainer(body);
+  createGrid(container, 16);
 
   function getIsGridLinesOn() {
     return isGridLinesOn;
@@ -12,21 +14,22 @@
   }
 
   const inputSize = document.querySelector("#size-range");
-  inputSize.addEventListener("change", () => changeGridSize(inputSize.value));
+  inputSize.addEventListener("change", () =>
+    changeGridSize(container, inputSize.value)
+  );
 
   const gridButton = document.querySelector("#grid-button");
   gridButton.addEventListener("click", toggleGridLines);
 
-  function createContainer() {
-    const body = document.querySelector("body");
+  function createContainer(body) {
     const container = document.createElement("div");
     container.id = "container";
     body.appendChild(container);
     return container;
   }
 
-  function createGrid(size = 16) {
-    const container = createContainer();
+  function createGrid(container, size = 16) {
+    container.innerHTML = "";
     for (let i = 0; i < size; i++) {
       const column = document.createElement("div");
       column.classList.add("column");
@@ -36,16 +39,14 @@
         square.classList.add("square");
         column.appendChild(square);
         startDrawing(square);
-        if (getIsGridLinesOn) square.classList.add("grid");
+        if (getIsGridLinesOn()) square.classList.add("grid");
       }
     }
   }
 
-  function changeGridSize(inputSize) {
+  function changeGridSize(container, inputSize) {
     console.log(inputSize);
-    const body = document.querySelector("body");
-    body.removeChild(body.lastChild);
-    createGrid(inputSize);
+    createGrid(container, inputSize);
   }
 
   function changeBackgroundColor(e) {
