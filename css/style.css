@@ -48,7 +48,7 @@ body #container {
 }
 
 .grid {
-  border: 0.15em solid var(--clr-neon-purple);
+  border: 0.05em solid var(--clr-neon-purple);
 }
 
 #title {
