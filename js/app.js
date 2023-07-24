@@ -2,6 +2,7 @@
   let isGridLinesOn = false;
   let mouseDown = false;
   let isRainbowModeOn = false;
+  let isEraserModeOn = false;
   let currentColor = "#9D00FF";
 
   document.addEventListener("mouseup", () => (mouseDown = false));
@@ -49,6 +50,9 @@
   const rainbowButton = document.querySelector("#rainbow-button");
   rainbowButton.addEventListener("click", toggleRainbowMode);
 
+  const eraserButton = document.querySelector("#eraser-button");
+  eraserButton.addEventListener("click", toggleEraserMode);
+
   function createContainer(body) {
     const container = document.createElement("div");
     container.id = "container";
@@ -88,7 +92,10 @@
     let color = getCurrentColor();
     if (isRainbowModeOn) {
       color = getRandomColor();
+    } else if (isEraserModeOn) {
+      color = "transparent";
     }
+
     e.target.style.backgroundColor = color;
   }
 
@@ -111,6 +118,12 @@
 
   function toggleRainbowMode() {
     isRainbowModeOn = !isRainbowModeOn;
+    isEraserModeOn = false;
+  }
+
+  function toggleEraserMode() {
+    isEraserModeOn = !isEraserModeOn;
+    isRainbowModeOn = false;
   }
 
   function clearGrid() {
