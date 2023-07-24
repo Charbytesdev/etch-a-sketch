@@ -1,12 +1,11 @@
 (function () {
   let isGridLinesOn = false;
   let mouseDown = false;
-
+  document.addEventListener("mouseup", () => (mouseDown = false));
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
     return false;
   };
-  function disableDragging() {}
 
   const body = document.querySelector("body");
   const container = createContainer(body);
@@ -71,7 +70,6 @@
     square.addEventListener("mousemove", (e) => {
       if (mouseDown) changeBackgroundColor(e);
     });
-    document.addEventListener("mouseup", () => (mouseDown = false));
   }
 
   function toggleGridLines() {
