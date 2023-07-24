@@ -1,7 +1,7 @@
 (function () {
   let isGridLinesOn = false;
   let mouseDown = false;
-  let currentColor = "purple";
+  let currentColor = "#9D00FF";
   document.addEventListener("mouseup", () => (mouseDown = false));
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
