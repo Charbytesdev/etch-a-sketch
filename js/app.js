@@ -71,7 +71,7 @@
     square.addEventListener("mousemove", (e) => {
       if (mouseDown) changeBackgroundColor(e);
     });
-    square.addEventListener("mouseup", () => (mouseDown = false));
+    document.addEventListener("mouseup", () => (mouseDown = false));
   }
 
   function toggleGridLines() {
