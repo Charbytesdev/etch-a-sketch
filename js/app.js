@@ -1,6 +1,7 @@
 (function () {
   let isGridLinesOn = false;
   let mouseDown = false;
+  let currentColor = "purple";
   document.addEventListener("mouseup", () => (mouseDown = false));
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
@@ -10,6 +11,14 @@
   const body = document.querySelector("body");
   const container = createContainer(body);
   createGrid(container, 16);
+
+  function getCurrentColor() {
+    return currentColor;
+  }
+
+  function setCurrentColor(color) {
+    currentColor = color;
+  }
 
   function getIsGridLinesOn() {
     return isGridLinesOn;
@@ -22,6 +31,11 @@
   const inputSize = document.querySelector("#size-range");
   inputSize.addEventListener("change", () =>
     changeGridSize(container, inputSize.value)
+  );
+
+  const inputColor = document.querySelector("#color-picker");
+  inputColor.addEventListener("change", () =>
+    setCurrentColor(inputColor.value)
   );
 
   const gridButton = document.querySelector("#grid-button");
@@ -58,8 +72,12 @@
     createGrid(container, inputSize);
   }
 
+  function changeColor(color) {
+    setCurrentColor(color);
+  }
+
   function changeBackgroundColor(e) {
-    e.target.style.backgroundColor = "purple";
+    e.target.style.backgroundColor = getCurrentColor();
   }
 
   function startDrawing(square) {
