@@ -1,4 +1,14 @@
 (function () {
+  const body = document.querySelector("body");
+  const container = createContainer(body);
+  const inputSize = document.querySelector("#size-range");
+  const inputColor = document.querySelector("#color-picker");
+  const gridButton = document.querySelector("#grid-button");
+  const clearButton = document.querySelector("#clear-button");
+  const colorButton = document.querySelector("#color-button");
+  const rainbowButton = document.querySelector("#rainbow-button");
+  const eraserButton = document.querySelector("#eraser-button");
+
   let isGridLinesOn = false;
   let mouseDown = false;
   let isColorModeOn = true;
@@ -7,14 +17,22 @@
   let currentColor = "#9D00FF";
 
   document.addEventListener("mouseup", () => (mouseDown = false));
+  gridButton.addEventListener("click", toggleGridLines);
+  clearButton.addEventListener("click", clearGrid);
+  colorButton.addEventListener("click", enableColorMode);
+  rainbowButton.addEventListener("click", enableRainbowMode);
+  eraserButton.addEventListener("click", enableEraserMode);
+  inputColor.addEventListener("change", () =>
+    setCurrentColor(inputColor.value)
+  );
+  inputSize.addEventListener("change", () =>
+    changeGridSize(container, inputSize.value)
+  );
+
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
     return false;
   };
-
-  const body = document.querySelector("body");
-  const container = createContainer(body);
-  createGrid(container, 16);
 
   function getCurrentColor() {
     return currentColor;
@@ -31,31 +49,6 @@
   function setIsGridLinesOn(newValue) {
     isGridLinesOn = newValue;
   }
-
-  const inputSize = document.querySelector("#size-range");
-  inputSize.addEventListener("change", () =>
-    changeGridSize(container, inputSize.value)
-  );
-
-  const inputColor = document.querySelector("#color-picker");
-  inputColor.addEventListener("change", () =>
-    setCurrentColor(inputColor.value)
-  );
-
-  const gridButton = document.querySelector("#grid-button");
-  gridButton.addEventListener("click", toggleGridLines);
-
-  const clearButton = document.querySelector("#clear-button");
-  clearButton.addEventListener("click", clearGrid);
-
-  const colorButton = document.querySelector("#color-button");
-  colorButton.addEventListener("click", enableColorMode);
-
-  const rainbowButton = document.querySelector("#rainbow-button");
-  rainbowButton.addEventListener("click", enableRainbowMode);
-
-  const eraserButton = document.querySelector("#eraser-button");
-  eraserButton.addEventListener("click", enableEraserMode);
 
   function createContainer(body) {
     const container = document.createElement("div");
@@ -92,24 +85,22 @@
     return `rgb(${r},${g},${b})`;
   }
 
-  function changeBackgroundColor(e) {
+  function changeBackgroundColor(square) {
     let color = "";
-
     if (isColorModeOn) color = getCurrentColor();
     if (isRainbowModeOn) color = getRandomColor();
     else if (isEraserModeOn) color = "transparent";
-
-    e.target.style.backgroundColor = color;
+    square.style.backgroundColor = color;
   }
 
   function startDrawing(square) {
-    square.addEventListener("mousedown", (e) => {
+    square.addEventListener("mousedown", () => {
       mouseDown = true;
-      changeBackgroundColor(e);
+      changeBackgroundColor(square);
     });
 
-    square.addEventListener("mousemove", (e) => {
-      if (mouseDown) changeBackgroundColor(e);
+    square.addEventListener("mousemove", () => {
+      if (mouseDown) changeBackgroundColor(square);
     });
   }
 
@@ -140,4 +131,7 @@
   function clearGrid() {
     createGrid(container, inputSize.value);
   }
+
+  //Intialize app
+  createGrid(container, 16);
 })();
