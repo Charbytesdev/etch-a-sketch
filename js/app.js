@@ -1,6 +1,6 @@
 (function () {
-  const body = document.querySelector("body");
-  const container = createContainer(body);
+  const appContainer = document.querySelector("#app-container");
+  const gridContainer = createGridContainer(appContainer);
   const inputSize = document.querySelector("#size-range");
   const inputColor = document.querySelector("#color-picker");
   const gridButton = document.querySelector("#grid-button");
@@ -26,7 +26,7 @@
     setCurrentColor(inputColor.value)
   );
   inputSize.addEventListener("change", () =>
-    changeGridSize(container, inputSize.value)
+    changeGridSize(gridContainer, inputSize.value)
   );
 
   //Disable dragging to prevent drawing issues
@@ -50,19 +50,19 @@
     isGridLinesOn = newValue;
   }
 
-  function createContainer(body) {
-    const container = document.createElement("div");
-    container.id = "container";
-    body.appendChild(container);
-    return container;
+  function createGridContainer(appContainer) {
+    const gridContainer = document.createElement("div");
+    gridContainer.id = "grid-container";
+    appContainer.appendChild(gridContainer);
+    return gridContainer;
   }
 
-  function createGrid(container, size = 16) {
-    container.innerHTML = "";
+  function createGrid(gridContainer, size = 16) {
+    gridContainer.innerHTML = "";
     for (let i = 0; i < size; i++) {
       const column = document.createElement("div");
       column.classList.add("column");
-      container.appendChild(column);
+      gridContainer.appendChild(column);
       for (let j = 0; j < size; j++) {
         const square = document.createElement("div");
         square.classList.add("square");
@@ -74,8 +74,8 @@
     }
   }
 
-  function changeGridSize(container, inputSize) {
-    createGrid(container, inputSize);
+  function changeGridSize(gridContainer, inputSize) {
+    createGrid(gridContainer, inputSize);
   }
 
   function getRandomColor() {
@@ -129,9 +129,9 @@
   }
 
   function clearGrid() {
-    createGrid(container, inputSize.value);
+    createGrid(gridContainer, inputSize.value);
   }
 
   //Intialize app
-  createGrid(container, 16);
+  createGrid(gridContainer, 16);
 })();

@@ -28,11 +28,18 @@ body {
   align-items: center;
 }
 
-body #container {
+body #grid-container {
   display: flex;
   height: 80vh;
   width: 80vh;
   border: 0.3em solid var(--clr-neon-purple);
+}
+
+#app-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2em;
 }
 
 .column {
@@ -62,10 +69,10 @@ body #container {
 
 #button-container {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 0.3em;
+  gap: 1em;
   justify-content: center;
-  align-items: center;
   margin-bottom: 1em;
 }
 
