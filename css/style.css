@@ -59,3 +59,43 @@ body #container {
     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
     0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
 }
+
+#button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+button {
+  font-family: "VT323", sans-serif;
+  text-transform: uppercase;
+  background-color: #ff5f1f;
+  font-size: 2em;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+#color-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5em;
+}
+
+#color-picker {
+  background: none;
+  border: none;
+  width: clamp(1em, 5vh, 2.5em);
+  height: clamp(1em, 5vh, 2.5em);
+  cursor: pointer;
+}
+
+#color-picker::-webkit-color-swatch {
+  border-radius: 50%;
+  border: solid 0.2em black;
+}
