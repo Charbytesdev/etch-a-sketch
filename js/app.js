@@ -1,6 +1,6 @@
 (function () {
-  const body = document.querySelector("body");
-  const container = createContainer(body);
+  const appContainer = document.querySelector("#app-container");
+  const gridContainer = createGridContainer(appContainer);
   const inputSize = document.querySelector("#size-range");
   const inputColor = document.querySelector("#color-picker");
   const gridButton = document.querySelector("#grid-button");
@@ -8,6 +8,7 @@
   const colorButton = document.querySelector("#color-button");
   const rainbowButton = document.querySelector("#rainbow-button");
   const eraserButton = document.querySelector("#eraser-button");
+  const rangeValue = document.querySelector("#range-value");
 
   let isGridLinesOn = false;
   let mouseDown = false;
@@ -25,9 +26,10 @@
   inputColor.addEventListener("change", () =>
     setCurrentColor(inputColor.value)
   );
-  inputSize.addEventListener("change", () =>
-    changeGridSize(container, inputSize.value)
-  );
+  inputSize.addEventListener("change", () => {
+    changeGridSize(gridContainer, inputSize.value);
+    changeGridSizeValue(inputSize.value);
+  });
 
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
@@ -50,19 +52,19 @@
     isGridLinesOn = newValue;
   }
 
-  function createContainer(body) {
-    const container = document.createElement("div");
-    container.id = "container";
-    body.appendChild(container);
-    return container;
+  function createGridContainer(appContainer) {
+    const gridContainer = document.createElement("div");
+    gridContainer.id = "grid-container";
+    appContainer.appendChild(gridContainer);
+    return gridContainer;
   }
 
-  function createGrid(container, size = 16) {
-    container.innerHTML = "";
+  function createGrid(gridContainer, size = 16) {
+    gridContainer.innerHTML = "";
     for (let i = 0; i < size; i++) {
       const column = document.createElement("div");
       column.classList.add("column");
-      container.appendChild(column);
+      gridContainer.appendChild(column);
       for (let j = 0; j < size; j++) {
         const square = document.createElement("div");
         square.classList.add("square");
@@ -74,8 +76,12 @@
     }
   }
 
-  function changeGridSize(container, inputSize) {
-    createGrid(container, inputSize);
+  function changeGridSize(gridContainer, inputSize) {
+    createGrid(gridContainer, inputSize);
+  }
+
+  function changeGridSizeValue(value) {
+    rangeValue.textContent = `${value} x ${value}`;
   }
 
   function getRandomColor() {
@@ -105,33 +111,43 @@
   }
 
   function toggleGridLines() {
+    gridButton.classList.toggle("active");
     setIsGridLinesOn(!isGridLinesOn);
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => square.classList.toggle("grid"));
   }
 
-  function enableColorMode() {
-    isColorModeOn = true;
+  function disableDrawingModes() {
+    colorButton.classList.remove("active");
+    rainbowButton.classList.remove("active");
+    eraserButton.classList.remove("active");
     isRainbowModeOn = false;
     isEraserModeOn = false;
+    isColorModeOn = false;
+  }
+
+  function enableColorMode() {
+    disableDrawingModes();
+    colorButton.classList.add("active");
+    isColorModeOn = true;
   }
 
   function enableRainbowMode() {
+    disableDrawingModes();
+    rainbowButton.classList.add("active");
     isRainbowModeOn = true;
-    isColorModeOn = false;
-    isEraserModeOn = false;
   }
 
   function enableEraserMode() {
+    disableDrawingModes();
+    eraserButton.classList.add("active");
     isEraserModeOn = true;
-    isColorModeOn = false;
-    isRainbowModeOn = false;
   }
 
   function clearGrid() {
-    createGrid(container, inputSize.value);
+    createGrid(gridContainer, inputSize.value);
   }
 
   //Intialize app
-  createGrid(container, 16);
+  createGrid(gridContainer, 16);
 })();
