@@ -8,6 +8,7 @@
   const colorButton = document.querySelector("#color-button");
   const rainbowButton = document.querySelector("#rainbow-button");
   const eraserButton = document.querySelector("#eraser-button");
+  const rangeValue = document.querySelector("#range-value");
 
   let isGridLinesOn = false;
   let mouseDown = false;
@@ -25,9 +26,10 @@
   inputColor.addEventListener("change", () =>
     setCurrentColor(inputColor.value)
   );
-  inputSize.addEventListener("change", () =>
-    changeGridSize(gridContainer, inputSize.value)
-  );
+  inputSize.addEventListener("change", () => {
+    changeGridSize(gridContainer, inputSize.value);
+    changeGridSizeValue(inputSize.value);
+  });
 
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
@@ -76,6 +78,10 @@
 
   function changeGridSize(gridContainer, inputSize) {
     createGrid(gridContainer, inputSize);
+  }
+
+  function changeGridSizeValue(value) {
+    rangeValue.textContent = `${value} x ${value}`;
   }
 
   function getRandomColor() {
