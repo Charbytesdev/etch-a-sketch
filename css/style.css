@@ -85,6 +85,14 @@ button {
   color: #ffffff;
   border-radius: 1em;
   cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+button:hover,
+button:active,
+.active {
+  box-shadow: 0 0 1em rgba(0, 0, 0);
+  transform: scale(1.1);
 }
 
 #color-button {

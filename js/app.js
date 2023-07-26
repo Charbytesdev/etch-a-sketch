@@ -105,27 +105,37 @@
   }
 
   function toggleGridLines() {
+    gridButton.classList.toggle("active");
     setIsGridLinesOn(!isGridLinesOn);
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => square.classList.toggle("grid"));
   }
 
-  function enableColorMode() {
-    isColorModeOn = true;
+  function disableDrawingModes() {
+    colorButton.classList.remove("active");
+    rainbowButton.classList.remove("active");
+    eraserButton.classList.remove("active");
     isRainbowModeOn = false;
     isEraserModeOn = false;
+    isColorModeOn = false;
+  }
+
+  function enableColorMode() {
+    disableDrawingModes();
+    colorButton.classList.add("active");
+    isColorModeOn = true;
   }
 
   function enableRainbowMode() {
+    disableDrawingModes();
+    rainbowButton.classList.add("active");
     isRainbowModeOn = true;
-    isColorModeOn = false;
-    isEraserModeOn = false;
   }
 
   function enableEraserMode() {
+    disableDrawingModes();
+    eraserButton.classList.add("active");
     isEraserModeOn = true;
-    isColorModeOn = false;
-    isRainbowModeOn = false;
   }
 
   function clearGrid() {
