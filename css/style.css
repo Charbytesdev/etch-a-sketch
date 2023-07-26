@@ -128,7 +128,7 @@ button:active,
   width: 1em;
   border-radius: 50%;
   background-color: #ffffff;
-  border: 0.2em solid black;
+  border: 0.01em solid black;
 }
 
 #color-picker {
