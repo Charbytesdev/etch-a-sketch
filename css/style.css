@@ -72,7 +72,7 @@ body #grid-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 2em;
   justify-content: center;
   margin-bottom: 1em;
 }
