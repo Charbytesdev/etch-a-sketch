@@ -120,6 +120,7 @@ button:active,
 
 #input-range {
   -webkit-appearance: none;
+  cursor: pointer;
   background-color: blue;
   outline: none;
   border-radius: 30%;
