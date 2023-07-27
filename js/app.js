@@ -9,6 +9,8 @@
   const rainbowButton = document.querySelector("#rainbow-button");
   const eraserButton = document.querySelector("#eraser-button");
   const rangeValue = document.querySelector("#range-value");
+  const buttonClickAudio = document.querySelector("#button-click-audio");
+  const allButtons = document.querySelectorAll("button");
 
   let isGridLinesOn = false;
   let mouseDown = false;
@@ -30,7 +32,14 @@
     changeGridSize(gridContainer, inputSize.value);
     changeGridSizeValue(inputSize.value);
   });
+  allButtons.forEach((button) =>
+    button.addEventListener("click", () => playSoundEffect(buttonClickAudio))
+  );
 
+  function playSoundEffect(audio) {
+    audio.currentTime = 0;
+    audio.play();
+  }
   //Disable dragging to prevent drawing issues
   document.ondragstart = () => {
     return false;
