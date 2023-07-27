@@ -20,7 +20,7 @@
   let isColorModeOn = true;
   let isRainbowModeOn = false;
   let isEraserModeOn = false;
-  let currentColor = "#9D00FF";
+  let currentColor = "#FF3131";
   let isMuted = false;
 
   document.addEventListener("mouseup", () => (mouseDown = false));

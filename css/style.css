@@ -1,5 +1,4 @@
 :root {
-  --clr-neon-purple: #9d00ff;
   --clr-neon-blue: #1b03a3;
 }
 
@@ -32,7 +31,7 @@ body #grid-container {
   display: flex;
   height: 75vh;
   width: 75vh;
-  border: 0.3em solid var(--clr-neon-purple);
+  border: 0.3em solid var(--clr-neon-blue);
 }
 
 #sound-button {
@@ -66,7 +65,7 @@ body #grid-container {
 }
 
 .grid {
-  border: 0.05em solid var(--clr-neon-purple);
+  border: 0.05em solid var(--clr-neon-blue);
 }
 
 #title {
