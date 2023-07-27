@@ -149,6 +149,11 @@
   }
 
   function startDrawing(square) {
+    square.addEventListener("touchstart", () => {
+      mouseDown = true;
+      changeBackgroundColor(square);
+    });
+
     square.addEventListener("mousedown", () => {
       mouseDown = true;
       changeBackgroundColor(square);
