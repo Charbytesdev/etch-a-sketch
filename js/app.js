@@ -11,7 +11,8 @@
   const eraserButton = document.querySelector("#eraser-button");
   const rangeValue = document.querySelector("#range-value");
   const buttonClickAudio = document.querySelector("#button-click-audio");
-  const backgroundMusic = document.querySelector("#background-audio");
+  const backgroundMusic = document.querySelector("#background-music");
+  const soundImage = document.querySelector("#sound-button");
   const allButtons = document.querySelectorAll("button");
 
   let isGridLinesOn = false;
@@ -20,6 +21,7 @@
   let isRainbowModeOn = false;
   let isEraserModeOn = false;
   let currentColor = "#9D00FF";
+  let isMuted = false;
 
   document.addEventListener("mouseup", () => (mouseDown = false));
   gridButton.addEventListener("click", toggleGridLines);
@@ -34,15 +36,46 @@
     changeGridSize(gridContainer, inputSize.value);
     changeGridSizeValue(inputSize.value);
   });
+  soundImage.addEventListener("click", () => {
+    changeSoundImage(soundImage);
+    changeAudioState();
+  });
   body.addEventListener("click", () => playBackgroundMusic(backgroundMusic));
   allButtons.forEach((button) =>
     button.addEventListener("click", () => playSoundEffect(buttonClickAudio))
   );
 
   function playBackgroundMusic(backgroundMusic) {
-    backgroundMusic.play();
-    backgroundMusic.volume = 0.1;
+    if (!isMuted) {
+      backgroundMusic.play();
+      backgroundMusic.volume = 0.1;
+    }
   }
+
+  function pauseBackgroundMusic() {
+    backgroundMusic.pause();
+  }
+
+  function changeAudioState() {
+    if (!isMuted) {
+      isMuted = true;
+      pauseBackgroundMusic();
+      buttonClickAudio.muted = true;
+    } else {
+      isMuted = false;
+      backgroundMusic.play();
+      buttonClickAudio.muted = false;
+    }
+  }
+
+  function changeSoundImage(soundImage) {
+    if (soundImage.src.includes("/unmute.png")) {
+      soundImage.src = soundImage.src.replace("/unmute.png", "/mute.png");
+    } else {
+      soundImage.src = soundImage.src.replace("/mute", "/unmute");
+    }
+  }
+
   function playSoundEffect(audio) {
     audio.currentTime = 0;
     audio.play();
