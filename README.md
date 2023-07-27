@@ -1,6 +1,6 @@
 ## Etch a Sketch
 
-A web drawing app created with vanilla Javascript, HTML and styled using CSS.
+Etch a sketch is a web drawing app made with Javascript, CSS and HTML.
 
 ## Deployment
 
