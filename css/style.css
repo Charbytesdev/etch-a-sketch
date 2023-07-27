@@ -25,15 +25,25 @@ body {
   font-family: "VT323", sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
 body #grid-container {
   display: flex;
-  height: 80vh;
-  width: 80vh;
+  height: 75vh;
+  width: 75vh;
   border: 0.3em solid var(--clr-neon-purple);
+}
+
+#sound-button {
+  margin: 1em 0em 0em 1em;
+  height: clamp(3em, 3vw, 5em);
+  width: clamp(3em, 3vw, 5em);
+
+  padding: 0;
+  cursor: pointer;
+  align-self: flex-start;
+  justify-content: center;
 }
 
 #app-container {
