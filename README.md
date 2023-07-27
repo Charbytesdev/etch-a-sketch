@@ -1,6 +1,10 @@
 ## Etch a Sketch
 
-Etch a Sketch is a web drawing app created by me using Javascript, CSS and HTML.
+A web drawing app created with vanilla Javascript, HTML and styled using CSS.
+
+## Deployment
+
+Available live at: https://charbytesdev.github.io/etch-a-sketch
 
 ## Features
 
@@ -13,12 +17,6 @@ Etch a Sketch is a web drawing app created by me using Javascript, CSS and HTML.
 - [x] "Grid size" slider for user to choose the grid size of their liking.
 - [x] Background music and button pressing sound effects (Mute button found on top left).
 - [x] Compatible with laptop and desktop screens (will be adapting to smartphones soon).
-
-## Deployment
-
-Available live at: https://charbytesdev.github.io/etch-a-sketch
-
-A web drawing app created with vanilla Javascript and styled using CSS.
 
 <div align="center">
  <img src="./img/preview_screenshot_01.png" alt="Preview Screenshot 1" width="800">
