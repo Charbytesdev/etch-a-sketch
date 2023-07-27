@@ -2,14 +2,14 @@
   const appContainer = document.querySelector("#app-container");
   const body = document.querySelector("body");
   const gridContainer = createGridContainer(appContainer);
-  const inputSize = document.querySelector("#size-range");
+  const inputSize = document.querySelector("#input-range");
   const inputColor = document.querySelector("#color-picker");
   const gridButton = document.querySelector("#grid-button");
   const clearButton = document.querySelector("#clear-button");
   const colorButton = document.querySelector("#color-button");
   const rainbowButton = document.querySelector("#rainbow-button");
   const eraserButton = document.querySelector("#eraser-button");
-  const rangeValue = document.querySelector("#range-value");
+  const rangeValue = document.querySelector("#input-range-value");
   const buttonClickAudio = document.querySelector("#button-click-audio");
   const backgroundMusic = document.querySelector("#background-music");
   const soundImage = document.querySelector("#sound-button");
