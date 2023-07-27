@@ -1,5 +1,6 @@
 (function () {
   const appContainer = document.querySelector("#app-container");
+  const body = document.querySelector("body");
   const gridContainer = createGridContainer(appContainer);
   const inputSize = document.querySelector("#size-range");
   const inputColor = document.querySelector("#color-picker");
@@ -10,6 +11,7 @@
   const eraserButton = document.querySelector("#eraser-button");
   const rangeValue = document.querySelector("#range-value");
   const buttonClickAudio = document.querySelector("#button-click-audio");
+  const backgroundMusic = document.querySelector("#background-audio");
   const allButtons = document.querySelectorAll("button");
 
   let isGridLinesOn = false;
@@ -32,10 +34,15 @@
     changeGridSize(gridContainer, inputSize.value);
     changeGridSizeValue(inputSize.value);
   });
+  body.addEventListener("click", () => playBackgroundMusic(backgroundMusic));
   allButtons.forEach((button) =>
     button.addEventListener("click", () => playSoundEffect(buttonClickAudio))
   );
 
+  function playBackgroundMusic(backgroundMusic) {
+    backgroundMusic.play();
+    backgroundMusic.volume = 0.1;
+  }
   function playSoundEffect(audio) {
     audio.currentTime = 0;
     audio.play();
