@@ -87,7 +87,7 @@ body #grid-container {
 }
 
 button,
-#range-value {
+#input-range-value {
   font-family: "VT323", sans-serif;
   font-size: 2em;
   font-weight: bold;
@@ -118,8 +118,9 @@ button:active,
   gap: 0.5em;
 }
 
-#size-range {
+#input-range {
   -webkit-appearance: none;
+  cursor: pointer;
   background-color: blue;
   outline: none;
   border-radius: 30%;
@@ -127,11 +128,11 @@ button:active,
   height: 0.25em;
 }
 
-#range-value {
+#input-range-value {
   align-self: center;
 }
 
-#size-range::-webkit-slider-thumb {
+#input-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 1em;
   width: 1em;
